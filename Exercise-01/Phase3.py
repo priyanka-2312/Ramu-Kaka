@@ -1,12 +1,18 @@
 
-f = open("data.txt","w")
-name = input("Enter name of customer:")
-amount = int(input("Enter purchase amount:"))
-date = input("Enter purchase date:")
+def store():
+    f= open("MyFile.txt" ,"a+")
+    Name=input("Enter the name of customer:")
+    Amount=input("Enter the amount of purchased product:")
+    Date=input("Enter the date of purchase:")
 
-f.write(name + "\n")
-f.write(str(amount)+ "\n")
-f.write(date + "\n")
+    newline="\n"
+    f.write(Name)
+    f.write(newline)
+    f.write(Amount)
+    f.write(newline)
+    f.write(Date)
+    f.write(newline)
+             
 
-
-f.close()
+    f.close()
+store()
