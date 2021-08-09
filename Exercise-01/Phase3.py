@@ -1,18 +1,42 @@
 
-def store():
-    f= open("MyFile.txt" ,"a+")
-    Name=input("Enter the name of customer:")
-    Amount=input("Enter the amount of purchased product:")
-    Date=input("Enter the date of purchase:")
+import json
+import os
 
-    newline="\n"
-    f.write(Name)
-    f.write(newline)
-    f.write(Amount)
-    f.write(newline)
-    f.write(Date)
-    f.write(newline)
-             
+path='./info.json'
+if os.path.isfile(path) and os.access(path,os.R_OK):
+    with open("info.json","r") as t:
+         j= json.load(t)
+    data = j
+else:
+    data={}
 
-    f.close()
-store()
+
+
+
+k=0
+num=int(input("Enter number of times you want to insert record:"))
+for i in range(num):
+    name=input("Enter you name:")
+    amount=int(input("Enter the amount:"))
+    date=input("Enter the date:")
+    for key,value in data.items():
+        print(key)
+        print(value)
+        
+        if key == name:
+            data[name].append([date,amount])
+            k=1
+                
+    if k == 0:
+        date_amount = [[date,amount]]
+        data[name]=date_amount
+            
+    
+    
+
+print(json.dumps(data))    
+with open("info.json", "w") as f:
+   p=json.dump(data, f)
+
+
+
